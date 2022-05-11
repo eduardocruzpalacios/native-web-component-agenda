@@ -60,8 +60,8 @@ template.innerHTML = `
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" placeholder="Name" required>
     <label for="phone">Phone number:</label><br>
-    <input type="tel" id="phone" name="phone" placeholder="6XXYYYXXX" pattern="^\+?(6\d{2}|7[1-9]\d{1})\d{6}$" required>
-    <input type="submit" value="+">
+    <input type="tel" id="phone" name="phone" placeholder="0123456789" required>
+    <input type="submit" id="submit" value="+">
     </fieldset>
 </form>
 
@@ -73,7 +73,53 @@ class Agenda extends HTMLElement {
         super();
         this._shadowRoot = this.attachShadow({ mode: 'open' });
         this._shadowRoot.appendChild(template.content.cloneNode(true));
+
+        this._contacts = [];
+
+        this.$contactList = this._shadowRoot.querySelector('ul');
+        console.log(this.$contactList);
+
+        this.$inputName = this._shadowRoot.getElementById('name');
+        this.$inputPhone = this._shadowRoot.getElementById('phone');
+
+        this.$submitButton = this._shadowRoot.getElementById('submit');
+        this.$submitButton.addEventListener('click', this._addContact.bind(this));
+
+        this._renderContactList();
+    }
+
+    _addContact() {
+        if (this.$inputName.value.length > 0 && this.$inputPhone.value.length > 0) {
+            this._contacts.push({ name: this.$inputName.value, phone: this.$inputPhone.value, isEmergencyContact: false })
+            this._renderContactList();
+            this.$inputName.value = '';
+            this.$inputPhone.value = '';
+        }
+    }
+
+    _renderContactList() {
+        this.$contactList.innerHTML = '';
+
+        this.contacts.forEach((contact, index) => {
+            let $contactItem = document.createElement('article');
+            $contactItem.innerHTML = contact.name + ': ' + contact.phone;
+            this.$contactList.appendChild($contactItem);
+        });
+    }
+
+    set contacts(value) {
+        this._contacts = value;
+        this._renderContactList();
+    }
+
+    get contacts() {
+        return this._contacts;
     }
 }
+
+document.querySelector('agenda-app').contacts = [
+    { name: "John Doe", phone: "600111222", isEmergencyContact: true },
+    { name: "Random guy", phone: "699777773", isEmergencyContact: false }
+];
 
 window.customElements.define('agenda-app', Agenda);
