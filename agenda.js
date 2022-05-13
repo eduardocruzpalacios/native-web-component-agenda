@@ -81,6 +81,11 @@ class Agenda extends HTMLElement {
 
         this._contacts = [];
 
+        document.querySelector('agenda-app')._contacts = [
+            { name: "John Doe", phone: "600111222", isEmergencyContact: true },
+            { name: "Random guy", phone: "699777773", isEmergencyContact: false }
+        ];
+
         this.$contactList = this._shadowRoot.querySelector('ul');
         console.log(this.$contactList);
 
@@ -109,7 +114,7 @@ class Agenda extends HTMLElement {
 
         this._contacts.forEach((contact, index) => {
             let $contactItem = document.createElement('article');
-            $contactItem.innerHTML = contact.name + ': ' + contact.phone;
+            $contactItem.innerHTML = contact.name + ': ' + contact.phone + ' | emergency contact? ' + contact.isEmergencyContact;
             this.$contactList.appendChild($contactItem);
         });
     }
@@ -123,10 +128,5 @@ class Agenda extends HTMLElement {
         return this._contacts;
     }
 }
-
-document.querySelector('agenda-app')._contacts = [
-    { name: "John Doe", phone: "600111222", isEmergencyContact: true },
-    { name: "Random guy", phone: "699777773", isEmergencyContact: false }
-];
 
 window.customElements.define('agenda-app', Agenda);
