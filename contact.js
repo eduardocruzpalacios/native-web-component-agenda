@@ -89,6 +89,18 @@ export class Contact extends HTMLElement {
                 break;
         }
     }
+
+    get emergency() {
+        return this.hasAttribute('emergency');
+    }
+
+    set emergency(val) {
+        if (val) {
+            this.setAttribute('emergency', '');
+        } else {
+            this.removeAttribute('emergency');
+        }
+    }
 }
 
 window.customElements.define('contact-item', Contact);
