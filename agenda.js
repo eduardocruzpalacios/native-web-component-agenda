@@ -130,6 +130,7 @@ class Agenda extends HTMLElement {
             $contactItem.setAttribute('index', index);
 
             $contactItem.addEventListener('onDelete', this._deleteContact.bind(this));
+            $contactItem.addEventListener('onToggle', this._toggleIsEmergencyContact.bind(this));
 
             this.$contactList.appendChild($contactItem);
         });
@@ -146,6 +147,14 @@ class Agenda extends HTMLElement {
 
     _deleteContact(e) {
         this._contacts.splice(e.detail, 1);
+        this._renderContactList();
+    }
+
+    _toggleIsEmergencyContact(e) {
+        const contact = this._contacts[e.detail];
+        this._contacts[e.detail] = Object.assign({}, contact, {
+            isEmergencyContact: !contact.isEmergencyContact
+        });
         this._renderContactList();
     }
 }
