@@ -98,7 +98,6 @@ class Agenda extends HTMLElement {
         ];
 
         this.$contactList = this._shadowRoot.querySelector('ul');
-        console.log(this.$contactList);
 
         this.$inputName = this._shadowRoot.getElementById('name');
         this.$inputPhone = this._shadowRoot.getElementById('phone');
@@ -110,9 +109,7 @@ class Agenda extends HTMLElement {
     }
 
     _addContact() {
-        console.log('called');
         if (this.$inputName.value.length > 0 && this.$inputPhone.value.length > 0) {
-            console.log('init');
             this._contacts.push({ name: this.$inputName.value, phone: this.$inputPhone.value, isEmergencyContact: false })
             this._renderContactList();
             this.$inputName.value = '';

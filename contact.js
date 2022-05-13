@@ -75,8 +75,6 @@ export class Contact extends HTMLElement {
             this.$item.classList.remove('isEmergency');
             this.$checkbox.removeAttribute('checked');
         }
-        console.log(this._name);
-        console.log(this._phone);
         this.$textName.innerHTML = this._name;
         this.$textPhone.innerHTML = this._phone;
     }
