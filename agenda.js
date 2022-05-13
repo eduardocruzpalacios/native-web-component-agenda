@@ -123,6 +123,9 @@ class Agenda extends HTMLElement {
             let $contactItem = document.createElement('contact-item');
             $contactItem.setAttribute('name', contact.name);
             $contactItem.setAttribute('phone', contact.phone);
+            if (contact.isEmergencyContact) {
+                $contactItem.setAttribute('emergency', '');
+            }
             this.$contactList.appendChild($contactItem);
         });
     }

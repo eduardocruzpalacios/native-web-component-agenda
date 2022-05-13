@@ -8,7 +8,7 @@ template.innerHTML = `
     }
 
     .isEmergency {
-        font-color: red;
+        color: red;
     }
 
     button {
@@ -59,7 +59,7 @@ export class Contact extends HTMLElement {
     }
 
     _renderContactItem() {
-        if (this.hasAttribute('checked')) {
+        if (this.hasAttribute('emergency')) {
             this.$item.classList.add('isEmergency');
             this.$checkbox.setAttribute('checked', '');
         } else {
@@ -73,15 +73,20 @@ export class Contact extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['name', 'phone'];
+        return ['name', 'phone', 'emergency'];
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
-        if (name === 'name') {
-            this._name = newValue;
-        }
-        if (name === 'phone') {
-            this._phone = newValue;
+        switch (name) {
+            case 'name':
+                this._name = newValue;
+                break;
+            case 'phone':
+                this._phone = newValue;
+                break;
+            case 'emergency':
+                this._emergency = this.hasAttribute('emergency');
+                break;
         }
     }
 }
