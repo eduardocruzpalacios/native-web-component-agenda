@@ -11,7 +11,8 @@ template.innerHTML = `
         max-width: 400px;
     }
 
-    h1 {
+    h2,
+    h3 {
         text-align: center;
     }
 
@@ -64,11 +65,11 @@ template.innerHTML = `
     }
 </style>
 
-<h1>Agenda</h1>
+<h2>Agenda</h2>
 
 <form>
     <fieldset>
-    <legend>New contact:</legend>
+    <legend>Add a new contact:</legend>
     <label for="name">Name:</label>
     <input type="text" id="name" name="name" placeholder="Name" required>
     <label for="phone">Phone number:</label><br>
@@ -77,6 +78,7 @@ template.innerHTML = `
     </fieldset>
 </form>
 
+<h3>Contact list</h3>
 <ul id="contacts"></ul>
 `;
 
