@@ -8,7 +8,7 @@ template.innerHTML = `
         display: block;
         font-color: #14202E;
         font-family: sans-serif;
-        max-width: 400px;
+        max-width: 500px;
     }
 
     h2,
@@ -32,7 +32,6 @@ template.innerHTML = `
         padding: 5px 10px;
     }
       
-
     input[type=text], input[type=tel] {
         border: 1px solid #14202E;
         border-radius: 4px;
@@ -60,8 +59,8 @@ template.innerHTML = `
     }
 
     ul {
+        background-color: #091235;
         list-style: none;
-        padding: 0;
     }
 </style>
 
@@ -79,6 +78,9 @@ template.innerHTML = `
 </form>
 
 <h3>Contact list</h3>
+
+<small>* Checked ones are emergency contacts</small>
+
 <ul id="contacts"></ul>
 `;
 

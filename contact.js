@@ -5,6 +5,7 @@ template.innerHTML = `
     :host {
         display: block;
         font-family: sans-serif;
+        padding: 10px 0;
     }
 
     .isEmergency {
@@ -12,8 +13,16 @@ template.innerHTML = `
     }
 
     button {
+        background-color: red;
         border: none;
+        border-radius: 4px;
+        color: white;
         cursor: pointer;
+        font-weight: bold;
+    }
+
+    li {
+        color: white;
     }
 </style>
 
@@ -21,7 +30,7 @@ template.innerHTML = `
     <input type="checkbox">
     <label id="name"></label>
     <label id="phone"></label>
-    <button>❌</button>
+    <button>X</button>
 </li>
 `;
 
