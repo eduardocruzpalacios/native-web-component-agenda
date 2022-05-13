@@ -38,7 +38,7 @@ export class Contact extends HTMLElement {
         this.$deleteButton = this._shadowRoot.querySelector('button');
 
         this.$deleteButton.addEventListener('click', e => {
-            this.dispatchEvent(new CustomEvent('onDelete', { detail: this.index }));
+            this.dispatchEvent(new CustomEvent('onDelete', { detail: this.index, composed: true, bubbles: true }));
         });
 
         this.$checkbox.addEventListener('click', e => {
@@ -73,7 +73,7 @@ export class Contact extends HTMLElement {
     }
 
     static get observedAttributes() {
-        return ['name', 'phone', 'emergency'];
+        return ['name', 'phone', 'emergency', 'index'];
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -86,6 +86,9 @@ export class Contact extends HTMLElement {
                 break;
             case 'emergency':
                 this._emergency = this.hasAttribute('emergency');
+                break;
+            case 'index':
+                this._index = parseInt(newValue);
                 break;
         }
     }
@@ -100,6 +103,14 @@ export class Contact extends HTMLElement {
         } else {
             this.removeAttribute('emergency');
         }
+    }
+
+    get index() {
+        return this._index;
+    }
+
+    set index(value) {
+        this.setAttribute('index', value);
     }
 }
 

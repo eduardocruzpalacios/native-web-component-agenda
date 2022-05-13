@@ -121,11 +121,16 @@ class Agenda extends HTMLElement {
 
         this._contacts.forEach((contact, index) => {
             let $contactItem = document.createElement('contact-item');
+
             $contactItem.setAttribute('name', contact.name);
             $contactItem.setAttribute('phone', contact.phone);
             if (contact.isEmergencyContact) {
                 $contactItem.setAttribute('emergency', '');
             }
+            $contactItem.setAttribute('index', index);
+
+            $contactItem.addEventListener('onDelete', this._deleteContact.bind(this));
+
             this.$contactList.appendChild($contactItem);
         });
     }
@@ -137,6 +142,11 @@ class Agenda extends HTMLElement {
 
     get contacts() {
         return this._contacts;
+    }
+
+    _deleteContact(e) {
+        this._contacts.splice(e.detail, 1);
+        this._renderContactList();
     }
 }
 
