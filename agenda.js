@@ -6,6 +6,11 @@ template.innerHTML = `
         display: block;
         font-color: #14202E;
         font-family: sans-serif;
+        max-width: 400px;
+    }
+
+    h1 {
+        text-align: center;
     }
 
     form {
