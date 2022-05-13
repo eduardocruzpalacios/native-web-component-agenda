@@ -94,7 +94,9 @@ class Agenda extends HTMLElement {
     }
 
     _addContact() {
+        console.log('called');
         if (this.$inputName.value.length > 0 && this.$inputPhone.value.length > 0) {
+            console.log('init');
             this._contacts.push({ name: this.$inputName.value, phone: this.$inputPhone.value, isEmergencyContact: false })
             this._renderContactList();
             this.$inputName.value = '';
@@ -105,7 +107,7 @@ class Agenda extends HTMLElement {
     _renderContactList() {
         this.$contactList.innerHTML = '';
 
-        this.contacts.forEach((contact, index) => {
+        this._contacts.forEach((contact, index) => {
             let $contactItem = document.createElement('article');
             $contactItem.innerHTML = contact.name + ': ' + contact.phone;
             this.$contactList.appendChild($contactItem);
@@ -122,7 +124,7 @@ class Agenda extends HTMLElement {
     }
 }
 
-document.querySelector('agenda-app').contacts = [
+document.querySelector('agenda-app')._contacts = [
     { name: "John Doe", phone: "600111222", isEmergencyContact: true },
     { name: "Random guy", phone: "699777773", isEmergencyContact: false }
 ];
