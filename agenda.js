@@ -1,3 +1,5 @@
+import { Contact } from './contact.js';
+
 const template = document.createElement('template');
 
 template.innerHTML = `
@@ -54,6 +56,11 @@ template.innerHTML = `
 
     input[type=submit]:hover {
         background-color: #091235;
+    }
+
+    ul {
+        list-style: none;
+        padding: 0;
     }
 </style>
 
@@ -113,8 +120,9 @@ class Agenda extends HTMLElement {
         this.$contactList.innerHTML = '';
 
         this._contacts.forEach((contact, index) => {
-            let $contactItem = document.createElement('article');
-            $contactItem.innerHTML = contact.name + ': ' + contact.phone + ' | emergency contact? ' + contact.isEmergencyContact;
+            let $contactItem = document.createElement('contact-item');
+            $contactItem.setAttribute('name', contact.name);
+            $contactItem.setAttribute('phone', contact.phone);
             this.$contactList.appendChild($contactItem);
         });
     }
