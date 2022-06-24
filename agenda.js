@@ -1,4 +1,4 @@
-import { Contact } from './contact.js';
+import './contact.js';
 
 const template = document.createElement('template');
 
