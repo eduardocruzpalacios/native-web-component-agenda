@@ -1,11 +1,8 @@
 # Native Web Component Agenda
-## Scope
-Agenda that allows to add, delete, check and uncheck contacts, by manipulating the Shadow DOM.
-
-## Technology
-- JavaScript ES6
-
-## Components
-Organized via ES modules:
-- Agenda
-- Contact
+Agenda and contact native web components built with JavaScript ES6.
+## Functionality
+### Contacts
+- Read all
+- Create one
+- Delete one
+- Check/uncheck one as emergency contact
