@@ -46,11 +46,17 @@ export class Contact extends HTMLElement {
         this.$textPhone = this._shadowRoot.getElementById('phone');
         this.$deleteButton = this._shadowRoot.querySelector('button');
 
-        this.$deleteButton.addEventListener('click', e => {
-            this.dispatchEvent(new CustomEvent('onDelete', { detail: this.index, composed: true, bubbles: true }));
+        this.$deleteButton.addEventListener('click', (e) => {
+            this.dispatchEvent(
+                new CustomEvent('onDelete', {
+                    detail: this.index,
+                    composed: true,
+                    bubbles: true,
+                })
+            );
         });
 
-        this.$checkbox.addEventListener('click', e => {
+        this.$checkbox.addEventListener('click', (e) => {
             this.dispatchEvent(new CustomEvent('onToggle', { detail: this.index }));
         });
     }
